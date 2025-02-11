@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Open PDF from Google Drive</title>
+<title>Two Scrollable Images from Cloud</title>
+<style>
+body {
+  margin: 0;
+}.image-container {
+  width: 100%;
+  overflow-y: auto;
+}.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>
 </head>
 <body>
 
-  <h1>Click to Open PDF</h1>
-
-  <a href="https://drive.google.com/file/d/1C0n2gnlfYB16s1oGNLPo_FnQBTeglQ8K/view?usp=sharing" target="_blank">Open PDF</a>
-
-  <script>
-    // JavaScript to automatically replace the placeholder with a link from the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const driveLink = urlParams.get('link'); 
-
-    if (driveLink) {
-      document.querySelector('a').href = driveLink;
-    }
-  </script>
+<div class="image-container">
+  <img src="https://res.cloudinary.com/dbxypkkua/image/upload/v1739309995/1_svfta1.jpg" alt="Image 1">
+  <img src="https://res.cloudinary.com/dbxypkkua/image/upload/v1739309993/2_qabrte.jpg" alt="Image 2">
+</div>
 
 </body>
 </html>
