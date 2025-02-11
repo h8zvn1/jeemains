@@ -1,58 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JEE Main 2025 - Session 1 Paper 1</title>
-  <link rel="stylesheet" href="JEE Main 2025-S1P1_files/main.css"> </head>
-
+  <title>Open PDF from Google Drive</title>
+</head>
 <body>
-  <header>
-    <h1>JEE Main 2025 - Session 1 Paper 1</h1>
-    <nav>
-      <a href="#question-paper">Question Paper</a>
-      <a href="#answer-key">Answer Key</a>
-      <a href="#solutions">Solutions</a>
-      <a href="#analysis">Analysis</a>
-    </nav>
-  </header>
-  <main>
-    <section id="question-paper">
-      <h2>Question Paper</h2>
-      <p>The question paper for JEE Main 2025 Session 1 Paper 1 can be downloaded from the following links:</p>
-      <ul>
-        <li><a href="JEE Main 2025-S1P1_files/question-paper-english.pdf" target="_blank">English</a></li>
-        <li><a href="JEE Main 2025-S1P1_files/question-paper-hindi.pdf" target="_blank">Hindi</a></li>
-      </ul>
-    </section>
-    <section id="answer-key">
-      <h2>Answer Key</h2>
-      <p>The answer key for JEE Main 2025 Session 1 Paper 1 can be downloaded from the following links:</p>
-      <ul>
-        <li><a href="JEE Main 2025-S1P1_files/answer-key-english.pdf" target="_blank">English</a></li>
-        <li><a href="JEE Main 2025-S1P1_files/answer-key-hindi.pdf" target="_blank">Hindi</a></li>
-      </ul>
-    </section>
-    <section id="solutions">
-      <h2>Solutions</h2>
-      <p>The solutions for JEE Main 2025 Session 1 Paper 1 can be downloaded from the following links:</p>
-      <ul>
-        <li><a href="JEE Main 2025-S1P1_files/solutions-english.pdf" target="_blank">English</a></li>
-        <li><a href="JEE Main 2025-S1P1_files/solutions-hindi.pdf" target="_blank">Hindi</a></li>
-      </ul>
-    </section>
-    <section id="analysis">
-      <h2>Analysis</h2>
-      <p>The analysis for JEE Main 2025 Session 1 Paper 1 can be found at the following link:</p>
-      <ul>
-        <li><a href="JEE Main 2025-S1P1_files/analysis.html" target="_blank">Analysis</a></li>
-      </ul>
-    </section>
-  </main>
-  <footer>
-    <p>Copyright © 2025 - All rights reserved</p>
-  </footer>
-</body>
 
+  <h1>Click to Open PDF</h1>
+
+  <a href="https://drive.google.com/file/d/1C0n2gnlfYB16s1oGNLPo_FnQBTeglQ8K/view?usp=sharing" target="_blank">Open PDF</a>
+
+  <script>
+    // JavaScript to automatically replace the placeholder with a link from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const driveLink = urlParams.get('link'); 
+
+    if (driveLink) {
+      document.querySelector('a').href = driveLink;
+    }
+  </script>
+
+</body>
 </html>
