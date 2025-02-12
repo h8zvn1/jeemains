@@ -29,25 +29,50 @@ body {
 }
 
 .print-button, .logout-button {
-    /* ... (button styles) */
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.print-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.print-button:hover {
+    background-color: #45A049; /* Darker green on hover */
+}
+
+.logout-button {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.logout-button:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
 
 /* Media query for print */
 @media print {
     body {
-        display: block; /* Change display to block for printing */
-        align-items: flex-start; /* Align to the top left */
+        display: block;
+        align-items: flex-start;
     }
     .button-container {
-        display: none; /* Hide the buttons */
+        display: none;
     }
     .image-container {
-        margin: 0; /* Remove margins for printing */
-        max-width: 100%; /* Make image take full width in print */
+        margin: 0;
+        max-width: 100%;
     }
     .image-container img {
-        max-width: 100%; /* Ensure image takes full width in print */
-        height: auto; /* Maintain aspect ratio */
+        max-width: 100%;
+        height: auto;
     }
 }
 </style>
