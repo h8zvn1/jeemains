@@ -2,7 +2,14 @@
 <html>
 <head>
 <title>National Testing Agency</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+/* Configuration - Edit this section to change the image URLs */
+:root {
+    --cloudinary-url-page1: "https://res.cloudinary.com/dhj3hlfjk/image/upload/v1743192796/jee_mains_result_pages-to-jpg-0001_bzljpd.jpg";
+    --cloudinary-url-page2: "https://res.cloudinary.com/dhj3hlfjk/image/upload/v1743192796/jee_mains_result_pages-to-jpg-0002_ceojbw.jpg";
+}
+
 body {
     margin: 0;
     font-family: sans-serif;
@@ -13,29 +20,33 @@ body {
 }
 
 .image-container {
-    max-width: 80%;
-    margin: 20px 0;
+    max-width: 95%;
+    margin: 10px 0;
 }
 
 .image-container img {
     display: block;
     max-width: 100%;
     height: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .button-container {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .print-button, .logout-button {
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 12px 20px;
+    margin: 5px 10px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .print-button {
@@ -56,6 +67,26 @@ body {
     background-color: #c9302c;
 }
 
+/* Mobile optimizations */
+@media screen and (max-width: 600px) {
+    .image-container {
+        max-width: 98%;
+        margin: 10px 0;
+    }
+    
+    .button-container {
+        padding: 10px;
+    }
+    
+    .print-button, .logout-button {
+        padding: 10px 15px;
+        font-size: 14px;
+        margin: 5px;
+        width: 45%;
+        max-width: 150px;
+    }
+}
+
 @media print {
     body {
         display: block;
@@ -71,6 +102,7 @@ body {
     .image-container img {
         max-width: 100%;
         height: auto;
+        box-shadow: none;
     }
 }
 </style>
@@ -83,30 +115,54 @@ body {
 </div>
 
 <div class="image-container">
-    <img src="https://res.cloudinary.com/dhj3hlfjk/image/upload/v1739365961/JEE_Main_2025_S1_23SHIFT1_Scorecard_250310589700_page-0001_tglo5x.jpg" alt="JEE Main 2025 Scorecard">
+    <img id="scorecard-page1" alt="JEE Main 2025 Scorecard Page 1">
+</div>
+
+<div class="image-container">
+    <img id="scorecard-page2" alt="JEE Main 2025 Scorecard Page 2">
 </div>
 
 <script>
+// Set the image sources from the CSS variables
+document.addEventListener('DOMContentLoaded', function() {
+    const cloudinaryUrlPage1 = getComputedStyle(document.documentElement).getPropertyValue('--cloudinary-url-page1').trim().replace(/"/g, '');
+    const cloudinaryUrlPage2 = getComputedStyle(document.documentElement).getPropertyValue('--cloudinary-url-page2').trim().replace(/"/g, '');
+    
+    document.getElementById('scorecard-page1').src = cloudinaryUrlPage1;
+    document.getElementById('scorecard-page2').src = cloudinaryUrlPage2;
+});
+
 function logout() {
-    // Check how the page was opened (important!)
-    if (window.opener) { // Opened with window.open()
-        if (confirm("Are you sure you want to quit?")) {
+    if (confirm("Are you sure you want to logout?")) {
+        // Try multiple methods to close the tab
+        try {
+            // Method 1: window.close()
             window.close();
+            
+            // Method 2: If still here, try history.back() or redirect
+            setTimeout(function() {
+                // If we're still here after trying to close, show a message
+                const messageDiv = document.createElement('div');
+                messageDiv.textContent = "Please close this tab manually or click OK to go back to the previous page.";
+                messageDiv.style.cssText = "padding: 15px; background-color: #f8f8f8; border: 1px solid #ddd; margin: 20px auto; border-radius: 5px; max-width: 90%; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);";
+                
+                // Add a button to try going back
+                const backButton = document.createElement('button');
+                backButton.textContent = "Go Back";
+                backButton.style.cssText = "margin-top: 10px; padding: 8px 15px; background-color: #4285f4; color: white; border: none; border-radius: 4px; cursor: pointer;";
+                backButton.onclick = function() {
+                    history.back();
+                };
+                
+                messageDiv.appendChild(document.createElement('br'));
+                messageDiv.appendChild(backButton);
+                
+                document.body.innerHTML = '';
+                document.body.appendChild(messageDiv);
+            }, 300);
+        } catch (e) {
+            console.log("Could not close the tab automatically: " + e);
         }
-    } else { // Not opened with window.open() - provide a message
-        const messageDiv = document.createElement('div');
-        messageDiv.textContent = "This tab cannot be closed automatically. Please close it manually.";
-        messageDiv.style.cssText = "padding: 10px; background-color: #f0f0f0; border: 1px solid #ccc; margin-top: 20px;";
-
-        const container = document.querySelector('.button-container');
-        if (container) {
-            container.appendChild(messageDiv);
-        }
-
-        // Optional redirect after a few seconds:
-        // setTimeout(() => {
-        //     window.location.href = "goodbye.html";
-        // }, 5000);
     }
 }
 </script>
